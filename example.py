@@ -1,6 +1,9 @@
 import grigori
+import os
 
-w = grigori.Watcher(polling_interval=400)
+directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test")
+file_pattern=r".+\.rst"
+w = grigori.Watcher(directory, polling_interval=2000, recursive=True)
 
 for changes in w.watch():
     for change in changes:

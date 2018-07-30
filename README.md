@@ -38,3 +38,5 @@ w.wait()  # Start watching the files.
 Allow for watching multiple top-level directories, which will be each watched in threads using a thread pool.
 
 Add `inotify` support.
+
+Add Handler classes that can be used instead of for loops or callbacks.

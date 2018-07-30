@@ -11,6 +11,7 @@ Welcome to Grigori's documentation!
    :caption: Contents:
 
    quickstart
+   usage
 
 .. toctree::
    :maxdepth: 3

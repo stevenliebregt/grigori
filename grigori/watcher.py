@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class Change(IntEnum):
+    """Simple Enum representing the different types of changes to a file."""
 
     ADDED = 1
     MODIFIED = 2
@@ -18,6 +19,7 @@ class Change(IntEnum):
 
 
 class Watcher:
+    """Class that starts watching your files."""
 
     _directory = os.getcwd()  # The root directory to watch.
     _recursive = False
@@ -33,7 +35,7 @@ class Watcher:
     _files = {}  # Contains the current file list after each poll.
 
     def __init__(self, directory: str, recursive: bool = _recursive, polling_interval: int = _polling_interval,
-                 file_pattern: str = _file_pattern, directory_pattern: str = _directory_pattern, cache: bool = False):
+                 file_pattern: str = _file_pattern, directory_pattern: str = _directory_pattern, cache: bool = _cache):
         self._directory = directory
         self._recursive = recursive
         self._polling_interval = polling_interval
@@ -72,6 +74,7 @@ class Watcher:
 
     def on(self, change_type: Change, callback: types.FunctionType) -> None:
         """Register a callback function for a type of change.
+
         :param change_type: The type of the change.
         :param callback: A function to call when a change of the given type occurs.
         """
@@ -85,6 +88,7 @@ class Watcher:
 
     def watch(self) -> types.GeneratorType:
         """Keep polling for file changes and yield them.
+
         :return: A generator that yields a list of changes.
         """
 
@@ -99,6 +103,7 @@ class Watcher:
 
     def _poll(self) -> list:
         """Look for changes, then look for deleted files.
+
         :return: A list of changes, key the keys 'type' and 'file'.
         """
 
@@ -127,6 +132,7 @@ class Watcher:
 
     def _walk(self, directory: str, changes: list, files: dict) -> None:
         """Walk through a directory to find changes in files.
+
         :param directory: The directory to walk through.
         :param changes: A list that tracks the changes during the walks in a poll.
         :param files: A list of files that are found during this poll. Used to compare to the list from the previous
@@ -176,6 +182,7 @@ class Watcher:
     @staticmethod
     def _is_temporary_file(file: str) -> bool:
         """Check if the file given is a temporary file.
+
         :param file: The file to check.
         :return: True if the file is temporary, False if not.
         """

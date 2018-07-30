@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="Grigori",
-    version="1.0.0.pr-1",
+    version="1.0.1",
     url="https://github.com/stevenliebregt/grigori",
     license="MIT",
     author="Steven Liebregt",
